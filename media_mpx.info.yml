@@ -2,10 +2,9 @@ name: Media mpx
 type: module
 description: 'Provides thePlatform mpx integration.'
 package: Media
-core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9
 dependencies:
-  - drupal:media (>=8.5.0)
+  - drupal:media
   - drupal:guzzle_cache
   - drupal:datetime
 configure: entity.media_mpx_account.collection
