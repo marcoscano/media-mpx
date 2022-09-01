@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="media_mpx">
+  <description>PHP CodeSniffer configuration for Media MPX.</description>
+
+  <!-- Ignore markdown and txt files. -->
+  <exclude-pattern>*.md</exclude-pattern>
+  <exclude-pattern>*.txt</exclude-pattern>
+
+  <rule ref="Drupal"/>
+</ruleset>

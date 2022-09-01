@@ -1,0 +1,17 @@
+build:
+  assessment:
+    validate_codebase:
+      phplint:
+      container_composer:
+      phpcs:
+        sniff-all-files: true
+        halt-on-fail: false
+    testing:
+      run_tests.standard:
+        types: 'PHPUnit-Unit,PHPUnit-Kernel,PHPUnit-Functional'
+        testgroups: '--all'
+        suppress-deprecations: true
+      run_tests.js:
+        types: 'PHPUnit-FunctionalJavascript'
+        testgroups: '--all'
+        suppress-deprecations: true
