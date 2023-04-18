@@ -155,8 +155,8 @@ class AvailabilityTest extends WebDriverTestBase {
     $assert_session = $this->assertSession();
     $this->drupalLogin($this->rootUser);
     $this->drupalGet('admin/structure/media/manage/mpx');
-    $this->assertFieldByName('field_map[Media:availableDate]', 'field_available_date');
-    $this->assertFieldByName('field_map[Media:expirationDate]', 'field_expiration_date');
+    $this->assertSession()->fieldValueEquals('field_map[Media:availableDate]', 'field_available_date');
+    $this->assertSession()->fieldValueEquals('field_map[Media:expirationDate]', 'field_expiration_date');
 
     // Create a view that lists all media.
     $this->drupalGet('admin/structure/views/add');
