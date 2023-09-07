@@ -35,6 +35,13 @@ class PlayerMetadata {
   protected $playerUrl;
 
   /**
+   * The File Url Generator service
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected $fileUrlGenerator;
+
+  /**
    * Constructs a PlayerMetadata object.
    *
    * @param \Drupal\media\Entity\Media $drupal_media
@@ -48,6 +55,7 @@ class PlayerMetadata {
     $this->drupalMedia = $drupal_media;
     $this->mpxMedia = $mpx_media;
     $this->playerUrl = $player_url;
+    $this->fileUrlGenerator = \Drupal::service('file_url_generator');
   }
 
   /**
@@ -63,7 +71,7 @@ class PlayerMetadata {
     $source_plugin = $this->drupalMedia->getSource();
     return [
       'name' => $this->drupalMedia->label(),
-      'thumbnailUrl' => file_create_url($source_plugin->getMetadata($this->drupalMedia, 'thumbnail_uri')),
+      'thumbnailUrl' => $this->fileUrlGenerator->generateAbsoluteString($source_plugin->getMetadata($this->drupalMedia, 'thumbnail_uri')),
       'description' => $this->mpxMedia->getDescription(),
       'uploadDate' => $this->mpxMedia->getAvailableDate()->format(DATE_ISO8601),
       'embedUrl' => (string) $this->playerUrl->withEmbed(TRUE),

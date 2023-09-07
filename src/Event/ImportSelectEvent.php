@@ -4,7 +4,7 @@ namespace Drupal\media_mpx\Event;
 
 use Drupal\media_mpx\Plugin\media\Source\MpxMediaSourceInterface;
 use Lullabot\Mpx\DataService\ObjectListQuery;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event class for when content is being imported.

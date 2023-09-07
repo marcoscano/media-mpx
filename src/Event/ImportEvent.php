@@ -3,7 +3,7 @@
 namespace Drupal\media_mpx\Event;
 
 use Lullabot\Mpx\DataService\ObjectInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Class representing an import event.

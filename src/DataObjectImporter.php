@@ -2,6 +2,7 @@
 
 namespace Drupal\media_mpx;
 
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Uri;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -386,6 +387,7 @@ class DataObjectImporter {
     $media_query = $media_storage->getQuery();
     $existing = $media_query->condition('bundle', $source_configuration['media_image_bundle'])
       ->condition("{$source_configuration['media_image_field']}.target_id", $file->id())
+      ->accessCheck(TRUE)
       ->execute();
     if ($existing) {
       /** @var \Drupal\media\MediaInterface $media_image */
@@ -477,11 +479,7 @@ class DataObjectImporter {
     ];
     $encoded = \GuzzleHttp\json_encode($item->getJson());
 
-    // @todo Fix the following deprecations for next major release of the module
-    //   for drupal/core:^9.0. It doesn't have a replacement in a version
-    //   compatible with Drupal 8.9.x.
-    // @phpstan-ignore-next-line
-    $uri = $item->getId()->withScheme('https')->withQuery(build_query($query));
+    $uri = $item->getId()->withScheme('https')->withQuery(Query::build($query));
     $request = new Request('GET', $uri, static::REQUEST_HEADERS);
     $response_headers = $this->getResponseHeaders($encoded);
     $response = new Response(200, $response_headers, $encoded);

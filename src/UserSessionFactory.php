@@ -2,11 +2,11 @@
 
 namespace Drupal\media_mpx;
 
+use Drupal\media_mpx\Entity\UserInterface;
+use Lullabot\Mpx\Client;
 use Lullabot\Mpx\Service\IdentityManagement\UserSession;
 use Lullabot\Mpx\TokenCachePool;
-use Symfony\Component\Lock\StoreInterface;
-use Lullabot\Mpx\Client;
-use Drupal\media_mpx\Entity\UserInterface;
+use Symfony\Component\Lock\BlockingStoreInterface;
 
 /**
  * Factory used to create mpx user sessions.
@@ -23,7 +23,7 @@ class UserSessionFactory {
   /**
    * The lock store used to prevent sign-in stampedes.
    *
-   * @var \Symfony\Component\Lock\StoreInterface
+   * @var \Symfony\Component\Lock\BlockingStoreInterface
    */
   private $store;
 
@@ -39,12 +39,12 @@ class UserSessionFactory {
    *
    * @param \Lullabot\Mpx\Client $client
    *   The underlying mpx API client.
-   * @param \Symfony\Component\Lock\StoreInterface $store
+   * @param \Symfony\Component\Lock\BlockingStoreInterface $store
    *   The lock store used to prevent sign-in stampedes.
    * @param \Lullabot\Mpx\TokenCachePool $tokenCachePool
    *   The cache of authentication tokens.
    */
-  public function __construct(Client $client, StoreInterface $store, TokenCachePool $tokenCachePool) {
+  public function __construct(Client $client, BlockingStoreInterface $store, TokenCachePool $tokenCachePool) {
     $this->client = $client;
     $this->store = $store;
     $this->tokenCachePool = $tokenCachePool;
