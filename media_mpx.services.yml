@@ -127,12 +127,12 @@ services:
     arguments: ['@cache.media_mpx_metadata']
 
   media_mpx.token_cache_pool_adapter:
-    class: Symfony\Component\Cache\Adapter\SimpleCacheAdapter
+    class: Symfony\Component\Cache\Adapter\Psr16Adapter
     public: false
     arguments: ['@media_mpx.simple_cache_backend_default', 'media_mpx_token']
 
   media_mpx.metadata_cache_pool_adapter:
-    class: Symfony\Component\Cache\Adapter\SimpleCacheAdapter
+    class: Symfony\Component\Cache\Adapter\Psr16Adapter
     public: false
     arguments: ['@media_mpx.simple_cache_backend_metadata', 'media_mpx_metadata']
 
