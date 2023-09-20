@@ -14,11 +14,11 @@
   "require": {
     "drupal/guzzle_cache": "^2.0 || ^3.0",
     "kevinrob/guzzle-cache-middleware": "^3.3 || ^4.0",
-    "symfony/cache": "^3.4",
+    "symfony/cache": "^3.4 || ^6",
     "highwire/drupal-psr-16": "^1.0",
-    "lullabot/mpx-php": "^2.0.0",
+    "lullabot/mpx-php": "dev-main",
     "lullabot/drupal-symfony-lock": "^1.2",
-    "symfony/property-info": "^3.4 || ^4.4",
+    "symfony/property-info": "^3.4 || ^4.4 || ^6",
     "psr/simple-cache": "^1.0"
   },
   "require-dev": {
